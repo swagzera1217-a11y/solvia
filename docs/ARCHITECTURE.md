@@ -12,7 +12,7 @@ There is no signing method, delegation, custodial wallet, automatic token approv
 
 ## Local storage
 
-Namespaced `solveil:` keys contain paper positions, a watchlist and launch drafts. Imports validate names, tickers, HTTPS links and image data. Images are limited to PNG, JPEG or WebP. Exports use portable JSON.
+Namespaced `solvia:` keys (with a read-only fallback for legacy `solveil:` keys) contain paper positions, a watchlist and launch drafts. Imports validate names, tickers, HTTPS links and image data. Images are limited to PNG, JPEG or WebP. Exports use portable JSON.
 
 Local storage is neither encrypted backup nor shared server storage. Clearing site data can erase it. Export important drafts first.
 
