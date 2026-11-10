@@ -1,10 +1,12 @@
-# Solveil
+# Solvia
+
+![Solvia pixel identity](dist/assets/solvia-social-card.png)
 
 A Solana market workspace: discover liquidity, prepare a token launch and model a position before deciding what to sign.
 
 **Independent project · Solana mainnet data · no custody**
 
-[Open the workspace](https://solveil-site-release.vercel.app/) · [Launches](https://solveil-site-release.vercel.app/app/launch)
+[X · @Solviatech](https://x.com/Solviatech) · [Open the workspace](https://solveil-site-release.vercel.app/) · [Launches](https://solveil-site-release.vercel.app/app/launch)
 
 ## Get started
 
@@ -65,7 +67,7 @@ Browser → same-origin API → public sources. The server stores no user accoun
 ## Data sources
 
 - [DexScreener API](https://docs.dexscreener.com/api/reference): Solana pools, liquidity, volume and venue links.
-- [Binance public market data](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md): exchange references and daily candles, not trades executed by Solveil.
+- [Binance public market data](https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md): exchange references and daily candles, not trades executed by Solvia.
 - [Solana JSON RPC](https://solana.com/docs/rpc): confirmed slot and public SOL balance.
 - [Phantom provider](https://docs.phantom.com/solana/establishing-a-connection) and Wallet Standard: address connection.
 
