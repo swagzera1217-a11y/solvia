@@ -2,6 +2,23 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { positionMath, validateDraft } from '../dist/math.js';
 import balance from '../dist/api/balance.js';
+import candles, {validateCandleQuery} from '../dist/api/candles.js';
+import {spark} from '../dist/terminal-visuals.js';
+
+test('cold start can render an empty market sparkline',()=>{
+  assert.equal(spark(undefined),'');
+  assert.equal(spark([]),'');
+});
+test('only supported candle symbols and intervals reach the upstream',()=>{
+  assert.deepEqual(validateCandleQuery('/api/candles?symbol=btc&interval=5m'),{symbol:'BTC',interval:'5m'});
+  assert.equal(validateCandleQuery('/api/candles?symbol=BAD&interval=1h'),null);
+  assert.equal(validateCandleQuery('/api/candles?symbol=SOL&interval=1s'),null);
+});
+test('invalid candle query returns 400 without querying the source',async()=>{
+  const res={statusCode:200,setHeader(){},end(body){this.body=JSON.parse(body);}};
+  await candles({method:'GET',url:'/api/candles?symbol=BAD'},res);
+  assert.equal(res.statusCode,400);
+});
 
 test('long and short returns follow direction', () => {
   assert.equal(positionMath({ entry: 100, mark: 110, margin: 100, leverage: 3 }).pnl, 30);
