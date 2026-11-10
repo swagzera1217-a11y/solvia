@@ -1,6 +1,6 @@
 # Public API
 
-Both endpoints are read-only. Neither creates a transaction nor accepts a signing key.
+All endpoints are read-only. Neither creates a transaction nor accepts a signing key.
 
 ## `GET /api/markets`
 
@@ -40,4 +40,12 @@ Reads the public account's confirmed native SOL balance.
 
 One SOL equals 1,000,000,000 lamports. Base58 format and address length are checked before the RPC query. Invalid input returns 400, RPC failure 503, and non-GET methods 405. Responses use `Cache-Control: no-store`.
 
-The public address is sent to Solana's public RPC. Do not pass recovery phrases, private keys or other secrets to either endpoint.
+The public address is sent to Solana's public RPC. Do not pass recovery phrases, private keys or other secrets to any endpoint.
+
+## GET /api/candles?symbol=SOL&interval=1h
+
+Returns 240 public exchange candles with OHLCV fields, source name, symbol, interval and retrieval time. Symbols: SOL, BTC, ETH, XRP, BNB, DOGE. Intervals: 1m, 5m, 15m, 1h, 6h, 1d. Unsupported query values return 400 before a network request. Source failure returns 503; non-GET returns 405.
+
+## GET /api/launches
+
+Returns a fetched sample of public Solana token profiles and their most liquid quoted pair. The pump.fun-origin filter uses the mint suffix; verify the original token launch independently. The pair venue determines the displayed Trading / Market pool state; bonding-curve progress is not inferred. Includes source and retrieval time, and snapshot=true for a saved fallback. No token is deployed here.
