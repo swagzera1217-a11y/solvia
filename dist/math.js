@@ -1,0 +1,8 @@
+export function positionMath({entry,mark,margin,leverage,side='long',maintenance=.02}){
+ if(![entry,mark,margin,leverage,maintenance].every(Number.isFinite)||entry<=0||mark<=0||margin<=0||margin>1e6||leverage<1||leverage>20||maintenance<0||maintenance>=1/leverage||!['long','short'].includes(side))return null;
+ const direction=side==='long'?1:-1,size=margin*leverage,liquidation=entry*(1-direction*(1/leverage-maintenance));
+ const liquidated=side==='long'?mark<=liquidation:mark>=liquidation;
+ const rawPnl=direction*(mark-entry)/entry*size;
+ return {size,liquidation,liquidated,pnl:Math.max(-margin,rawPnl),equity:Math.max(0,margin+rawPnl),distance:(side==='long'?entry-liquidation:liquidation-entry)/entry*100};
+}
+export function validateDraft(input){const d={name:String(input.name||'').trim(),symbol:String(input.symbol||'').trim().toUpperCase(),description:String(input.description||'').trim(),website:String(input.website||'').trim(),social:String(input.social||'').trim(),image:typeof input.image==='string'?input.image:''};if(d.name.length<2||d.name.length>32)return {error:'Use a token name with 2–32 characters.'};if(!/^[A-Z0-9]{2,10}$/.test(d.symbol))return {error:'Use a ticker with 2–10 letters or numbers.'};if(d.description.length>500)return {error:'Keep the description under 500 characters.'};for(const key of ['website','social']){if(!d[key])continue;try{const url=new URL(d[key]);if(url.protocol!=='https:')throw Error();d[key]=url.href;}catch{return {error:'Links must be full HTTPS URLs.'};}}if(d.image&&!/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(d.image))return {error:'Use a PNG, JPEG or WebP image.'};if(d.image.length>1800000)return {error:'Choose an image under 1.3 MB.'};return {value:d};}
