@@ -1,1 +1,14 @@
-{"name":"solveil","version":"0.1.0","private":true,"type":"module","engines":{"node":">=20"},"scripts":{"dev":"node server.mjs","test":"node --test tests/domain.test.mjs","check":"node --check dist/app.js && node --check dist/motion.js && node --check dist/api/markets.js && node --check dist/api/balance.js"}}
+{
+  "name": "solveil",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node server.mjs",
+    "test": "node --test tests/domain.test.mjs",
+    "check": "node --check dist/app.js && node --check dist/motion.js && node --check dist/terminal.js && node --check dist/terminal-visuals.js && node --check dist/landing-demos.js && node --check dist/api/markets.js && node --check dist/api/balance.js && node --check dist/api/candles.js && node --check dist/api/launches.js"
+  }
+}

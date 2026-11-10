@@ -4,6 +4,8 @@ A Solana market workspace: discover liquidity, prepare a token launch and model 
 
 **Independent project · Solana mainnet data · no custody**
 
+[Open the workspace](https://solveil-site-release.vercel.app/) · [Launches](https://solveil-site-release.vercel.app/app/launch)
+
 ## Get started
 
 Requires Node.js 20 or later. No third-party runtime dependencies.
@@ -23,10 +25,10 @@ npm run check
 
 | Workspace | Available behavior |
 | --- | --- |
-| Markets | Public SOL, BTC and ETH reference prices and daily history |
+| Markets | Public SOL, BTC, ETH, XRP, BNB and DOGE references; daily and intraday history |
 | Pools | Solana liquidity and volume discovery, search and local watchlist |
 | Swap | Indicative SOL/USDC estimate and explicit Jupiter handoff |
-| Launch | Image preview, validated token details, local drafts, JSON import/export and pump.fun handoff |
+| Launch | Separate launch listing and creation routes; public token data, local drafts, JSON import/export and pump.fun handoff |
 | Positions | Local leverage simulator, direction, size and liquidation estimates |
 | Wallet | Phantom / Wallet Standard connection and confirmed public SOL balance |
 
@@ -39,11 +41,18 @@ dist/
   index.html       Landing, app and documentation shells
   style.css        Responsive layout and Solana colors
   app.js           Routes, data, wallet and local drafts
-  motion.js        Procedural pixel fields and demonstrations
+  motion.js        Procedural hero pixel fields
+  landing-demos.js Pixel candle, curve and position-replay demonstrations
+  terminal.js      Perps, swap, pool, launch and vault screens
+  terminal-visuals.js Candlestick rendering and procedural app artwork
+  terminal.css     Dense app layout
+  landing-detail.css Landing demonstration composition
   math.js          Position calculation and input validation
   api/
     markets.js     Public market aggregation and marked fallback
     balance.js     Read-only Solana balance endpoint
+    candles.js     Six markets and six candle intervals
+    launches.js    Public token-market discovery and marked fallback
   assets/          Local fonts and project artwork
   data/            Public market fallback snapshot
 docs/              API, architecture and model reference
